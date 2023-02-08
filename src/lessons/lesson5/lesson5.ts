@@ -79,7 +79,7 @@ const counter = {
 function MyFirstConstructorFunc (this: any, firstName: string, age: number) {
         this.firstName = firstName;
         this.age = age;
-        this.greeting = someObj.greeting.bind({firstName, age})
+        this.greeting = someObj.greeting.bind(this)
 }
 //let user = new MyFirstConstructorFunc('Sergey', 26)
 
@@ -96,6 +96,19 @@ Two.sayHello.bind(One)()
 // setAge - устанавливает полученное значение в свойство age объекта
 // greeting - используется функция sayHello из Task 05
 // можно использовать @ts-ignore
+
+//@ts-ignore
+const helperObj = {
+    changeName(name: string) {
+        //@ts-ignore
+        this.name = name
+    },
+    setAge(age: number) {
+        //@ts-ignore
+        this.age = age
+    },
+    greeting: Two.sayHello.bind(this)
+}
 
 // Bind
 // 1) Дана функция sumTwoNumbers, реализовать функцию bindNumber которая принимает функцию sumTwoNumbers и число, и
