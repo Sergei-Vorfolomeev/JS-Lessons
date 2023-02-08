@@ -31,10 +31,10 @@ type someObjType = {
     greeting: Function
 }
 
-let someObj:someObjType = {
+let someObj: someObjType = {
     name: 'Eugene',
     age: 32,
-    greeting () {
+    greeting() {
         return `My name is ${this.name}. I am ${this.age}`
     }
 }
@@ -49,21 +49,21 @@ let someObj:someObjType = {
 // все методы должны ссылаться на сам объект
 
 const counter = {
-    value: 0,
-    getCurrentValue () {
-        console.log(this.value)
+    count: 0,
+    getCurrentCount() {
+        return this.count
     },
-    increment () {
-        console.log(++this.value)
+    increment() {
+        return ++this.count
     },
-    decrement () {
-        console.log(--this.value)
+    decrement() {
+        return --this.count
     },
-    setCurrentCount (newValue: number) {
-        this.value = newValue
+    setCurrentCount(newValue: number) {
+        this.count = newValue
     },
-    resetCurrentValue () {
-        this.value = 0
+    resetCurrentCount() {
+        return this.count = 0
     },
 }
 
@@ -72,21 +72,48 @@ const counter = {
 // переделайте код из Task 02, что бы сработал следующий код:
 // counter.setCurrentCount(10).increment().increment().increment().decrement().getCurrentCount() // 12
 
+const counter2 = {
+    count: 0,
+    getCurrentCount() {
+        return this.count
+    },
+    increment() {
+        ++this.count
+        return counter2
+    },
+    decrement() {
+        --this.count
+        return counter2
+    },
+    setCurrentCount(newValue: number) {
+        this.count = newValue
+        return counter2
+    },
+    resetCurrentCount() {
+        return this.count = 0
+    },
+}
+
 // Task 04
 // Написать функцию конструктор myFirstConstructorFunc которая принимает 2 параметра name и age и возвращает объект
 // у которого будут эти свойства и метод greeting из Task 01
 
-function MyFirstConstructorFunc (this: any, firstName: string, age: number) {
-        this.firstName = firstName;
-        this.age = age;
-        this.greeting = someObj.greeting.bind(this)
+function MyFirstConstructorFunc(this: any, firstName: string, age: number) {
+    this.firstName = firstName;
+    this.age = age;
+    this.greeting = someObj.greeting.bind(this)
 }
+
 //let user = new MyFirstConstructorFunc('Sergey', 26)
 
 // Task 05 есть 2 объекта One и Two. С помощью bind и метода sayHello заставьте поздороваться объект One
 
 let One = {name: 'One'};
-let Two = {name: 'Two', sayHello: function() {console.log(`Hello, my name is ${this.name}`)}};
+let Two = {
+    name: 'Two', sayHello: function () {
+        console.log(`Hello, my name is ${this.name}`)
+    }
+};
 
 Two.sayHello.bind(One)()
 
@@ -113,7 +140,9 @@ const helperObj = {
 // Bind
 // 1) Дана функция sumTwoNumbers, реализовать функцию bindNumber которая принимает функцию sumTwoNumbers и число, и
 // возвращает другую функцию, которое также принимает число и возвращает сумму этих чисел. Замыкание использовать нельзя
-function sumTwoNumbers(a:number,b:number):number {return a + b};
+function sumTwoNumbers(a: number, b: number): number {
+    return a + b
+};
 
 // 2) Напишите функцию которая принимает первым аргументом объект One, а вторым helperObj. Данная функция
 // возвращает другую функцию которая принимает строку в качестве аргумента и устанавливает ее свойству name объекта One
@@ -123,6 +152,6 @@ function sumTwoNumbers(a:number,b:number):number {return a + b};
 // Реализовать задачи 2-4 из Bind с помощью Call
 
 
-
 // just a plug
-export default () => {};
+export default () => {
+};
