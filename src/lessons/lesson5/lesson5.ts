@@ -79,15 +79,15 @@ const counter2 = {
     },
     increment() {
         ++this.count
-        return counter2
+        return this
     },
     decrement() {
         --this.count
-        return counter2
+        return this
     },
     setCurrentCount(newValue: number) {
         this.count = newValue
-        return counter2
+        return this
     },
     resetCurrentCount() {
         return this.count = 0
