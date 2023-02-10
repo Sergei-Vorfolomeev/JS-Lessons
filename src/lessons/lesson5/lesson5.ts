@@ -67,7 +67,6 @@ const counter = {
     },
 }
 
-
 // Task 03
 // переделайте код из Task 02, что бы сработал следующий код:
 // counter.setCurrentCount(10).increment().increment().increment().decrement().getCurrentCount() // 12
